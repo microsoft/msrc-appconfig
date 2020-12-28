@@ -1,0 +1,4 @@
+-r dev-requirements.txt
+autopep8
+rope
+jupyter

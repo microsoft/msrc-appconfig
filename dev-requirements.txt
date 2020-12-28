@@ -1,0 +1,7 @@
+flake8
+#mypy
+#lxml
+pytest
+pytest-cov
+pytest-mock
+setuptools>=40.0

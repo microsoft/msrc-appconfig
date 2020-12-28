@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "c:\\v\\github\\microsoft\\msrc-appconfig\\.venv\\Scripts\\python.exe",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.extraPaths": [
+        "msrc-appconfig",
+        "msrc-appconfig/tests",
+        "msrc-appconfig-attrs",
+        "msrc-appconfig-dataclasses",
+        "msrc-appconfig-param"
+    ],
+    "python.testing.pytestEnabled": true
+}

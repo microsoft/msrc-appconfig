@@ -1,0 +1,44 @@
+"""The script shows tips to using dataclasses-based configuration schema.
+
+- Inheritance BaseConfig -> TheConfig
+- Composition, including missing different schemas.
+
+The sample_config.ini file can be used to initialize the configuration.
+For example, try the following invocation:
+>python sample_dataclasses.py -c sample_config.ini --appconfig.repeat 3 -b "sample base"
+"""  # noqa
+from typing import NamedTuple
+from dataclasses import dataclass, field
+
+from msrc.appconfig import gather_config
+
+
+class AppConfig(NamedTuple):
+    app_name: str = "Sample"
+    repeat: int = 1
+
+
+@dataclass(frozen=True)
+# frozen: always optional, prevents accidental change of a shared config
+class BaseConfig():
+    base_string: str = field(default='', metadata=dict(
+        help="A sample configuration element of type string."))
+
+
+@dataclass(frozen=True)
+class TheConfig(BaseConfig):
+    appconfig: AppConfig = AppConfig()
+
+
+def main(app_config: AppConfig, arg: str):
+    print("Base string has been configured to %r" % arg)
+    for i in range(app_config.repeat):
+        print("Hello from", app_config.app_name)
+
+
+if __name__ == '__main__':
+    app_config = gather_config(
+        TheConfig,
+        arg_aliases=dict(n="appconfig.app_name", b="base_string")
+    )
+    main(app_config.appconfig, app_config.base_string)

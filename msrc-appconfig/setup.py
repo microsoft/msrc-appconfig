@@ -26,7 +26,8 @@ setuptools.setup(
         "msrc.appconfig_decl"
     ]),
     install_requires=[
-        "ruamel.yaml"
+        "ruamel.yaml",
+        "typing_extensions"
     ],
     extras_require={
         "attrs": ["msrc-appconfig-attrs=="+package_version],

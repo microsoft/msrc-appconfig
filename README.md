@@ -1,5 +1,7 @@
 # MSRC Appconfig project
 
+![Check and test code](https://github.com/microsoft/msrc-appconfig/workflows/Check%20and%20test%20code/badge.svg)
+
 Type safe composable application configuration management in Python
 
 Application configuration is a set of values that depend on execution environment and/or user intent,

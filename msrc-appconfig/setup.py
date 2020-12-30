@@ -4,29 +4,11 @@ from pathlib import Path
 import setuptools
 
 # Major part is in a file
-here = os.getenv("BUILD_SOURCESDIRECTORY") or Path.cwd()
+here = os.getenv("GITHUB_WORKSPACE") or Path.cwd()
 version_file = Path(here, "VERSION.txt")
 if not version_file.is_file():
     version_file = Path(Path(here).parent, "VERSION.txt")
-base_version = version_file.read_text().strip()
-build_id = os.getenv("BUILD_BUILDID")
-is_final_env = os.getenv("IsFinalRelease")
-is_final = isinstance(is_final_env, str) and is_final_env.lower() == 'true'
-dev_version = (
-    '' if build_id is None or is_final
-    else ".dev" + build_id
-)
-
-# The full version of the package that we are creating is later needed
-# for running pytest, because we want to install the newly created package
-# from the feed.
-package_version = base_version + dev_version
-
-# See also 'publish_to_artifacts.yaml',
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#set-a-job-scoped-variable-from-a-script
-print("##vso[task.setvariable variable=version;isOutput=true]%s"
-      % package_version)
-
+package_version = version_file.read_text().strip()
 long_description = Path("README.md").read_text()
 
 setuptools.setup(
@@ -38,13 +20,14 @@ setuptools.setup(
     "shell variables and command line arguments.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://aka.ms/msrc-appconfig",
+    url="https://github.com/microsoft/msrc-appconfig",
     packages=setuptools.find_namespace_packages(include=[
         "msrc.appconfig",
         "msrc.appconfig_decl"
     ]),
     install_requires=[
-        "ruamel.yaml"
+        "ruamel.yaml",
+        "typing_extensions"
     ],
     extras_require={
         "attrs": ["msrc-appconfig-attrs=="+package_version],
@@ -60,5 +43,5 @@ setuptools.setup(
         # "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.7',
 )

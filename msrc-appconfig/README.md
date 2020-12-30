@@ -2,8 +2,6 @@
 
 Type safe composable configuration management in Python
 
-[![Build Status](https://msrcambridge.visualstudio.com/One/_apis/build/status/msrc-appconfig%20PR%20GATE?branchName=master)](https://msrcambridge.visualstudio.com/One/_build/latest?definitionId=455&branchName=master) [![msrc-appconfig package in One feed in Azure Artifacts](https://msrcambridge.feeds.visualstudio.com/_apis/public/Packaging/Feeds/90c888ee-b2dc-4533-bef8-63fef8df24bf/Packages/3867b4b4-d9c9-4b77-877d-499652c5eb2b/Badge)](https://msrcambridge.visualstudio.com/One/_packaging?_a=package&feed=90c888ee-b2dc-4533-bef8-63fef8df24bf&package=3867b4b4-d9c9-4b77-877d-499652c5eb2b&preferRelease=true)
-
 The package orchestrates application configuration from multiple sources: 
 built-in application defaults; .ini, JSON and YAML configuration files;
 shell environment variables; command line arguments.
@@ -19,10 +17,7 @@ locally and in the Cloud.
 
 ## Getting started
 
-Install the package with `pip install msrc-appconfig`. You may first need
-to configure `pip` to lookup the "One" feed. Click on the PyPi icon above,
-then "Connect to feed" button, choose Python in the left navigation column 
-and follow the instructions.
+Install the package with `pip install msrc-appconfig`.
 
 Configuration schema is a class definition with typed attributes and built-in defaults.
 ```python

@@ -1,5 +1,7 @@
 # MSRC Appconfig project
 
+![Check and test code](https://github.com/microsoft/msrc-appconfig/workflows/Check%20and%20test%20code/badge.svg)
+
 Type safe composable application configuration management in Python
 
 Application configuration is a set of values that depend on execution environment and/or user intent,
@@ -48,13 +50,12 @@ if __name__ == '__main__':
     app_config = gather_config(AppConfig, arg_aliases=dict(n='app_name'))
     main(app_config)
 ```
-The package supports Python >= 3.6. 
+The package supports Python >= 3.7. 
 You may consider creating and activating a temporary virtual environment using any tool of your choice.
 Here is a sample session that connects to private PyPI feed,
 installs `msrc-appconfig` package and runs `getting_started.py` script.
 ```
->pip install artifacts-keyring
->pip install --extra-index-url https://msrcambridge.pkgs.visualstudio.com/_packaging/One/pypi/simple/ msrc-appconfig
+>pip install msrc-appconfig
 >python getting_started.py
 INFO:msrc.appconfig:logging level set to INFO.
 Hello from Sample

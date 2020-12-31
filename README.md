@@ -1,6 +1,7 @@
 # MSRC Appconfig project
 
 ![Check and test code](https://github.com/microsoft/msrc-appconfig/workflows/Check%20and%20test%20code/badge.svg)
+![PyPI](https://img.shields.io/pypi/v/msrc-appconfig)
 
 Type safe composable application configuration management in Python
 

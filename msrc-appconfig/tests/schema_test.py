@@ -137,8 +137,9 @@ def test_unsupported_type(mocker):
         # Tuples must be homogenious
         mk_schema(("a", ty.Tuple[int, str]))
     with pytest.raises(TypeError):
-        # Tuple element cannot be a schema
-        mk_schema(("a", ty.Tuple[mk_class(("a", int))]))
+        # Tuple element must be any atomic but a schema
+        A = mk_class(("a", int))
+        mk_schema(("a", ty.Tuple[A]))
     mocker.patch("msrc.appconfig.schema.get_schema",
                  return_value=(("a", 0),))
 

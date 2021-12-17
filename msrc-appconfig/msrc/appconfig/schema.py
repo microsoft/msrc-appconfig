@@ -293,7 +293,7 @@ class Element:
             generator = map(parseBase, values)
             if t.parse_to_list:
                 return cast(ConfigValueType, list(generator))
-            return tuple(generator)
+            return cast(ConfigValueType, tuple(generator))
         if isinstance(self.element_type, AtomicType):
             return parseAtomic(self.element_type, value)
         elif isinstance(self.element_type, TupleType):
@@ -399,7 +399,7 @@ def interpret_type(t: type) -> Optional[ElementType]:
 
     Returns a type label or None for unsupported types."""
     def tryAtomic(t: type) -> Optional[
-            Union[AtomicType, Type[Enum], Schema[object]]]:
+            Union[AtomicType, Type[Enum], Schema[Any]]]:
         try:
             if issubclass(t, Enum):
                 return t
@@ -411,7 +411,8 @@ def interpret_type(t: type) -> Optional[ElementType]:
                 return AtomicType.INT
             if issubclass(t, float):
                 return AtomicType.FLOAT
-            return Schema(t)
+            return Schema(t)  # type: ignore
+            # Schema constructor raises runtime  exceptions for improper types
         except (TypeError, ValueError):
             return None
 

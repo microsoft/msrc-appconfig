@@ -125,7 +125,7 @@ class TupleType:
                  length: int,
                  parse_to_list: bool = False
                  ):
-        self.length = int(length)
+        self.length: int = int(length)
         if self.length < 0:
             raise ValueError(
                 "Tuple length must be 0 (unrestricted) or a positive integer.")
@@ -169,11 +169,11 @@ class Element:
         help: Optional[str] = None,
         is_secret: bool = False
     ):
-        self.help = help
+        self.help: Optional[str] = help
         _validate_element_type(element_type)
-        self.element_type = element_type
-        self.is_secret = is_secret
-        self.has_default = has_default
+        self.element_type: ElementType = element_type
+        self.is_secret: bool = is_secret
+        self.has_default: bool = has_default
         self.default_value = default_value
         if has_default and not self.type_check(default_value):
             raise ValueError("Element default value %r must have type %r."

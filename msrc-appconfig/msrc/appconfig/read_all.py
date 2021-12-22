@@ -218,7 +218,7 @@ def gather(
     for v in discovered.values():
         logger.info("final %s", v)
     # check required fileds
-    missing_fileds = set()
+    missing_fileds: ty.Set[str] = set()
     for name, el in schema.deep_items():
         if not el.has_default:
             if name not in discovered.keys():

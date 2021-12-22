@@ -125,7 +125,7 @@ class TupleType:
                  length: int,
                  parse_to_list: bool = False
                  ):
-        self.length = int(length)
+        self.length: int = int(length)
         if self.length < 0:
             raise ValueError(
                 "Tuple length must be 0 (unrestricted) or a positive integer.")
@@ -169,11 +169,11 @@ class Element:
         help: Optional[str] = None,
         is_secret: bool = False
     ):
-        self.help = help
+        self.help: Optional[str] = help
         _validate_element_type(element_type)
-        self.element_type = element_type
-        self.is_secret = is_secret
-        self.has_default = has_default
+        self.element_type: ElementType = element_type
+        self.is_secret: bool = is_secret
+        self.has_default: bool = has_default
         self.default_value = default_value
         if has_default and not self.type_check(default_value):
             raise ValueError("Element default value %r must have type %r."
@@ -293,7 +293,7 @@ class Element:
             generator = map(parseBase, values)
             if t.parse_to_list:
                 return cast(ConfigValueType, list(generator))
-            return tuple(generator)
+            return cast(ConfigValueType, tuple(generator))
         if isinstance(self.element_type, AtomicType):
             return parseAtomic(self.element_type, value)
         elif isinstance(self.element_type, TupleType):
@@ -399,7 +399,7 @@ def interpret_type(t: type) -> Optional[ElementType]:
 
     Returns a type label or None for unsupported types."""
     def tryAtomic(t: type) -> Optional[
-            Union[AtomicType, Type[Enum], Schema[object]]]:
+            Union[AtomicType, Type[Enum], Schema[Any]]]:
         try:
             if issubclass(t, Enum):
                 return t
@@ -411,7 +411,8 @@ def interpret_type(t: type) -> Optional[ElementType]:
                 return AtomicType.INT
             if issubclass(t, float):
                 return AtomicType.FLOAT
-            return Schema(t)
+            return Schema(t)  # type: ignore
+            # Schema constructor raises runtime  exceptions for improper types
         except (TypeError, ValueError):
             return None
 

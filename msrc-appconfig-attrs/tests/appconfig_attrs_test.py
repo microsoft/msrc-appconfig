@@ -40,7 +40,7 @@ class Base:
 
 @attr.s()
 class NoTypeAnnotation():
-    f = attr.ib()
+    f = attr.ib()  # type: ignore
 
 
 @attr.s(frozen=True, kw_only=True, auto_attribs=True)

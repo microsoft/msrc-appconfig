@@ -18,6 +18,7 @@ setuptools.setup(
     author_email="vassilyl@microsoft.com",
     description="Orchestrates application configuration from config files, "
     "shell variables and command line arguments.",
+    license="MIT License",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/microsoft/msrc-appconfig",
@@ -40,7 +41,11 @@ setuptools.setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        # "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.7',

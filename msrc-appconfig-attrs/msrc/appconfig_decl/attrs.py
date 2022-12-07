@@ -21,7 +21,7 @@ def inspect(schema: type) -> Optional[SchemaSource]:
                 help=field.metadata.get("help", None),
                 element_type=element_type,
                 is_secret=not field.repr,
-                has_default=not(field.default is attr.NOTHING),
+                has_default=not (field.default is attr.NOTHING),
                 default_value=field.default)
         else:
             raise ValueError(f"{schema}.{field.name}: {field.type} "

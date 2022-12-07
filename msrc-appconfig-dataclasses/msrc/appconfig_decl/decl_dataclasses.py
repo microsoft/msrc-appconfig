@@ -16,7 +16,7 @@ def inspect(schema: type) -> Optional[SchemaSource]:
                 help=field.metadata.get("help", None),
                 element_type=element_type,
                 is_secret=not field.repr,
-                has_default=not(
+                has_default=not (
                     field.default is dataclasses.MISSING
                     and field.default_factory  # type: ignore
                     is dataclasses.MISSING),

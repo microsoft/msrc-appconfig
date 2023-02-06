@@ -1,7 +1,7 @@
 from __future__ import annotations
 from msrc.appconfig.schema import (
     Element, AtomicType, TupleType, Schema, SchemaSource)
-from typing import Optional, Tuple, Union, Type, cast
+from typing import Optional, Tuple, Union, Type, Any, cast
 import param
 import enum
 
@@ -14,8 +14,8 @@ class IntTuple(param.NumericTuple):
     def _validate(self, val: object):
         super()._validate(val)
         # NumeriTuple ensures val is a numeric tuple
-        val = cast(Tuple[object, ...], val)
         if val is not None:
+            val = cast(Tuple[object, ...], val)
             for i, n in enumerate(val):
                 if not isinstance(n, int):
                     raise ValueError(
@@ -55,7 +55,9 @@ def inspect(schema: type) -> Optional[SchemaSource]:
             t = TupleType(AtomicType.INT, f.length)
         elif isinstance(f, param.NumericTuple):
             t = TupleType(AtomicType.FLOAT, f.length)
-        elif isinstance(f, param.List) and f.class_ is None:
+        # pyright 1.1.292 inference makes param.List.class_ be Type[object]
+        # which is incorrect.
+        elif isinstance(f, param.List) and cast(Any, f.class_) is None:
             raise ValueError("List parameter %s doesn't specify type of "
                              "list items using class_ keyword.")
         elif isinstance(f, param.List) and issubclass(f.class_, bool):

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from msrc.appconfig.schema import (
     Element, AtomicType, TupleType, Schema, SchemaSource)
-from typing import Optional, Tuple, Union, Type, cast
+from typing import Optional, Tuple, Union, Type, Any, cast
 import param
 import enum
 
@@ -55,6 +55,11 @@ def inspect(schema: type) -> Optional[SchemaSource]:
             t = TupleType(AtomicType.INT, f.length)
         elif isinstance(f, param.NumericTuple):
             t = TupleType(AtomicType.FLOAT, f.length)
+        # pyright 1.1.292 inference makes param.List.class_ be Type[object]
+        # which is incorrect.
+        elif isinstance(f, param.List) and cast(Any, f.class_) is None:
+            raise ValueError("List parameter %s doesn't specify type of "
+                             "list items using class_ keyword.")
         elif isinstance(f, param.List) and issubclass(f.class_, bool):
             t = TupleType(AtomicType.BOOL, 0, parse_to_list=True)
         elif isinstance(f, param.List) and issubclass(f.class_, int):

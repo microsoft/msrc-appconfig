@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, Dict, Generator, List, Mapping, Optional
 from typing import Sequence, Tuple, Type, TypeVar, Union
 """Flexible typed application configuration."""
 import itertools
@@ -329,7 +329,7 @@ def to_arg_dict(
 
 def to_argv(instance: object) -> List[str]:
     """Generates a flat list of cmdline options to reproduce the instance."""
-    def generator():
+    def generator() -> Generator[str, None, None]:
         for option, value in to_arg_dict(instance).items():
             yield option
             if isinstance(value, str):

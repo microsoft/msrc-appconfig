@@ -17,30 +17,28 @@ from msrc.appconfig.logger import logger
 
 
 def read_json(path: str) -> Mapping[str, object]:
-    loaded = json.load(open(path, 'r'))
+    with open(path, 'r') as json_file:
+        loaded = json.load(json_file)
     if isinstance(loaded, Mapping):
         conf = cast(Mapping[str, object], loaded)
         assert all(isinstance(key, str) for key in conf.keys())
         return conf
     else:
-        raise ValueError(
-            "The file doesn't represent a dictionary: %s",
-            path)
+        raise ValueError(f"The file doesn't represent a dictionary: {path}")
 
 
 _yaml = YAML(typ='safe')
 
 
 def read_yaml(path: str) -> Mapping[str, object]:
-    loaded = _yaml.load(open(path, 'r'))
+    with open(path, 'r') as yaml_file:
+        loaded = _yaml.load(yaml_file)
     if isinstance(loaded, Mapping):
         conf = cast(Mapping[str, object], loaded)
         assert all(isinstance(key, str) for key in conf.keys())
         return conf
     else:
-        raise ValueError(
-            "The file doesn't represent a dictionary: %s",
-            path)
+        raise ValueError(f"The file doesn't represent a dictionary: {path}")
 
 
 def read_ini(path: str) -> Mapping[str, object]:

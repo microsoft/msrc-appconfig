@@ -16,7 +16,7 @@ as an _Issue_. You may also tag the issue with a Bug tag which is optional. Plea
 
 The project has adopted [PEP 8](https://www.python.org/dev/peps/pep-0008/) style for code.
 We use [flake8](https://pypi.org/project/flake8/) with default options to lint the code.
-Additionally, the [mypy](http://www.mypy-lang.org/) static type checker must run without issues on the code.
+Additionally, the [pyright](https://github.com/microsoft/pyright) static type checker must run without issues on the code.
 
 ## Pull Request Process
 

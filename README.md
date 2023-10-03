@@ -3,7 +3,7 @@
 ![Check and test code](https://github.com/microsoft/msrc-appconfig/workflows/Check%20and%20test%20code/badge.svg)
 ![PyPI](https://img.shields.io/pypi/v/msrc-appconfig)
 
-Type safe composable application configuration management in Python
+Type-safe composable application configuration management in Python
 
 Application configuration is a set of values that depend on execution environment and/or user intent,
 such as path to data location, database password or maximum number of iterations.

@@ -16,7 +16,7 @@ from msrc.appconfig.read_environ import from_environ as _from_environ
 from msrc.appconfig.read_argv import from_argv as _from_argv
 
 
-AppConfig = ty.TypeVar('AppConfig', bound=ty.Any)
+AppConfig = ty.TypeVar('AppConfig')
 
 
 def gather(

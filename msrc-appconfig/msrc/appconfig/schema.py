@@ -325,7 +325,7 @@ class Element:
 
 SchemaSource = Tuple[Tuple[str, Element], ...]
 
-AppConfig = TypeVar("AppConfig", bound=Any, covariant=True)
+AppConfig = TypeVar("AppConfig", covariant=True)
 
 
 class Schema(Dict[str, Element], Generic[AppConfig]):

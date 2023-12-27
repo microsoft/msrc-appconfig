@@ -142,6 +142,14 @@ def test_arg_overrides_env(tmp_path, mocker):
 # ==========
 
 
+def test_gather_invalid_schema():
+    "First parameter must be a class."
+    with pytest.raises(TypeError):
+        msrc.appconfig.read_all.gather(WithDefaults())  # type: ignore
+    with pytest.raises(ValueError):
+        msrc.appconfig.read_all.gather(dict)
+
+
 def test_gather_invalid_defaults():
     "Data in `override_defailts` must be parseable."
     with pytest.raises(ValueError):

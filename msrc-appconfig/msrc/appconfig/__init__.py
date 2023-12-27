@@ -140,8 +140,6 @@ def gather_config(
 
     Returns the collected configuration."""
 
-    if not inspect.isclass(config_type):
-        raise TypeError("First argument must be a class.")
     if env_var_prefix is None and _main_script.name:
         env_var_prefix = _main_script.name.upper() + '_'
     try:

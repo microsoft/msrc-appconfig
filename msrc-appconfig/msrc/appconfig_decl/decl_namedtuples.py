@@ -1,6 +1,6 @@
 from __future__ import annotations
 """Provides appconfig support for typing.NamedTuple"""
-from typing import Mapping, NamedTuple, Optional, TYPE_CHECKING
+from typing import Mapping, NamedTuple, Optional, TYPE_CHECKING, cast
 if TYPE_CHECKING:
     from typing_extensions import TypeGuard
 from msrc.appconfig.schema import Element, SchemaSource, interpret_type
@@ -9,8 +9,8 @@ from msrc.appconfig.schema import Element, SchemaSource, interpret_type
 def is_typed_named_tuple(appconfig: object) -> TypeGuard[NamedTuple]:
     return isinstance(appconfig, type) \
         and issubclass(appconfig, tuple) \
-        and hasattr(appconfig, "_fields") \
-        and hasattr(appconfig, "__annotations__") \
+        and hasattr(cast(object, appconfig), "_fields") \
+        and hasattr(cast(object, appconfig), "__annotations__") \
         and (len(appconfig._fields) ==   # type: ignore
              len(appconfig.__annotations__))
 

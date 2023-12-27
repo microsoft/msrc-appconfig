@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Dict, Generator, List, Mapping, Optional
+from typing import Dict, Generator, List, Mapping, Optional
 from typing import Sequence, Tuple, Type, TypeVar, Union
 """Flexible typed application configuration."""
 import itertools
@@ -38,7 +38,7 @@ __all__ = [
     "to_argv"
 ]
 
-AppConfig = TypeVar('AppConfig', bound=Any)
+AppConfig = TypeVar('AppConfig')
 
 
 class _SharedInstance:

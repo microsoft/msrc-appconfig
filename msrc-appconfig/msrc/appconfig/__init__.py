@@ -3,7 +3,6 @@ from typing import Dict, Generator, List, Mapping, Optional
 from typing import Sequence, Tuple, Type, TypeVar, Union
 """Flexible typed application configuration."""
 import itertools
-import inspect
 import threading
 from os import PathLike
 import logging

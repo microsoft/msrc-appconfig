@@ -174,10 +174,20 @@ class Element:
         self.element_type: ElementType = element_type
         self.is_secret: bool = is_secret
         self.has_default: bool = has_default
-        self.default_value = default_value
         if has_default and not self.type_check(default_value):
             raise ValueError("Element default value %r must have type %r."
                              % (default_value, element_type))
+        if isinstance(element_type, Schema) and has_default:
+            # substitute schema elements taking defaults from the default value
+            for name in element_type.keys():
+                i = element_type[name]
+                element_type[name] = Element(
+                    i.element_type,
+                    True,
+                    getattr(default_value, name),
+                    i.help,
+                    i.is_secret)
+        self.default_value = default_value
 
     def type_check(self, value: object) -> bool:
         """Checks type of the value against element type."""
@@ -349,6 +359,8 @@ class Schema(Dict[str, Element], Generic[AppConfig]):
                         if not isinstance(v, Mapping):
                             raise ValueError(
                                 f"invalid value {v!r} for {n!r}")
+                        if el.has_default:
+                            v = dict(elt.to_dict(el.default_value, True), **v)
                         yield n, elt.from_dict(v)
                     else:
                         yield n, el.parse(v)

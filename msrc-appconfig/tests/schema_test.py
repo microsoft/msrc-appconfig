@@ -170,7 +170,22 @@ def test_to_dict():
     schema = s.Schema(CheckDefaults)
     data = dict(f1=34, f6=(12, 13), f8=dict(booleans=(False, True)))
     instance = schema.from_dict(data)
-    assert data == schema.to_dict(instance)
+    result = schema.to_dict(instance)
+    assert result == data
+    result = schema.to_dict(instance, include_defaults=True)
+    assert result == dict(
+        f0="string",
+        f1=34,
+        f2=3.14,
+        f3=True,
+        f4=En.Option2,
+        f5=("a", "b"),
+        f6=(12, 13),
+        f7=(1, 2, 3),
+        f8=dict(
+            booleans=(False, True),
+            options=(En.Option2, En.Option1))
+    )
 
 
 def test_to_dict_error():

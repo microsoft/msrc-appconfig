@@ -86,3 +86,18 @@ def test_unsupported():
         Schema(DictsNotSupported)
     with pytest.raises(ValueError):
         Schema(NonUniformTuplesNotSupported)
+
+
+@dataclass(frozen=True)
+class Inner():
+    b: int
+
+
+@dataclass(frozen=True)
+class Outer():
+    a2: Inner = Inner(2)
+
+
+def test_dataclass_gather_nested_default():
+    c = msrc.appconfig.gather_config(Outer, argv=[])
+    assert c.a2.b == 2

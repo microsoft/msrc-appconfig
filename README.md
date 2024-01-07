@@ -140,6 +140,9 @@ The project has adopted [PEP 8](https://www.python.org/dev/peps/pep-0008/) style
 We use [flake8](https://pypi.org/project/flake8/) with default options to lint the code.
 Additionally, the [pyright](https://github.com/microsoft/pyright) static type checker must run without issues on the code.
 
+To get quickly get started with VSCode consider importing `msrc-appconfig.code-profile`
+and create python environment from `dev-requirements.txt`.
+
 All new code must come with corresponding [pytest](https://docs.pytest.org/en/latest/) tests.
 Keep code coverage at 100%.
 
@@ -148,4 +151,4 @@ Run api_md.py to update [the package API](API.md).
 
 The project adopts [semantic versioning](https://semver.org/).
 Version number is in VERSION.txt file.
-To release a new package version create github release.
+To release a new package version update the version file and create github release.

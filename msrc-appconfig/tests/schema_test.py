@@ -50,6 +50,11 @@ def test_element_ctor():
     assert s.Element(all_types_schema) is not None
     with pytest.raises(TypeError):
         s.Element(int)  # type: ignore # intentionally
+    assert s.Element(s.TupleType(s.AtomicType.STR, 0, True),
+                     True, []) is not None
+    with pytest.raises(ValueError):
+        s.Element(s.TupleType(s.AtomicType.STR, 0),
+                  True, [])
 
 
 # Parsing element values

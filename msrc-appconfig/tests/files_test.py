@@ -105,7 +105,16 @@ def test_wrong_incl(tmp_path):
     (tmp_path/"sub"/"conf.yaml").write_text(all_yaml)
     (tmp_path/"inc.json").write_text(
         "{\"_include\":true}")
-    with pytest.raises(TypeError):
+    with pytest.raises(TypeError,
+                       match="must be a string or a list of strings."):
+        tuple(f.from_file(all_types_schema, tmp_path/"inc.json"))
+
+
+def test_wrong_multi_incl(tmp_path):
+    (tmp_path/"inc.json").write_text(
+        "{\"_include\":[true]}")
+    with pytest.raises(TypeError,
+                       match="must be a string or a list of strings."):
         tuple(f.from_file(all_types_schema, tmp_path/"inc.json"))
 
 
@@ -204,5 +213,9 @@ def test_get_main_script(mocker):
 
 def test_get_main_script_nomain(mocker):
     mocker.patch.dict("sys.modules", __main__=None)
+    assert f._get_main_script() == f.MainScriptConfig(
+        None, Path.cwd(), '')
+    # emulate interactive
+    mocker.patch.dict("sys.modules", __main__="main")
     assert f._get_main_script() == f.MainScriptConfig(
         None, Path.cwd(), '')

@@ -1,8 +1,7 @@
 from __future__ import annotations
 """Provides appconfig support for typing.NamedTuple"""
-from typing import Mapping, NamedTuple, Optional, TYPE_CHECKING, cast
-if TYPE_CHECKING:
-    from typing_extensions import TypeGuard
+from typing import Mapping, NamedTuple, Optional, cast
+from typing_extensions import TypeGuard
 from msrc.appconfig.schema import Element, SchemaSource, interpret_type
 
 

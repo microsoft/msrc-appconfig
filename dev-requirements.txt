@@ -5,3 +5,7 @@ pytest
 pytest-cov
 pytest-mock
 setuptools>=40.0
+-e ./msrc-appconfig
+-e ./msrc-appconfig-dataclasses
+-e ./msrc-appconfig-attrs
+-e ./msrc-appconfig-param

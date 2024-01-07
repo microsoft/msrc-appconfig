@@ -8,4 +8,5 @@
         "msrc-appconfig-param"
     ],
     "python.testing.pytestEnabled": true,
+    "markiscodecoverage.searchCriteria": "coverage.lcov",
 }

@@ -135,3 +135,17 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+The project has adopted [PEP 8](https://www.python.org/dev/peps/pep-0008/) style for code.
+We use [flake8](https://pypi.org/project/flake8/) with default options to lint the code.
+Additionally, the [pyright](https://github.com/microsoft/pyright) static type checker must run without issues on the code.
+
+All new code must come with corresponding [pytest](https://docs.pytest.org/en/latest/) tests.
+Keep code coverage at 100%.
+
+All API changes must be documented with markdown doc strings.
+Run api_md.py to update [the package API](API.md).
+
+The project adopts [semantic versioning](https://semver.org/).
+Version number is in VERSION.txt file.
+To release a new package version create github release.

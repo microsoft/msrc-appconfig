@@ -17,7 +17,7 @@ class CheckDefaults(ty.NamedTuple):
     f8: Nested = Nested((True, False), (En.Option2, En.Option1))
 
 
-DummyEnum = Enum("TestEnum", "A B C")
+DummyEnum = Enum("DummyEnum", "A B C")
 
 
 def test_tuple_ctor():

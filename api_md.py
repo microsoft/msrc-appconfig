@@ -86,7 +86,7 @@ if __name__ == "__main__":
             if callable(getattr(pkg, fn))])
         for name in pkg.__all__:
             obj = getattr(pkg, name)
-            if callable(obj):
+            if isinstance(obj, FunctionType):
                 write_fun(obj, f)
             else:
                 print("Skipped", name)

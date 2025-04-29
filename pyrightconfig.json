@@ -6,11 +6,8 @@
         "msrc-appconfig-dataclasses/msrc",
         "msrc-appconfig-param/msrc"
     ],
+    "extraPaths": ["msrc-appconfig"],
     "executionEnvironments": [
-        {
-            "root": "msrc-appconfig/tests",
-            "extraPaths": ["msrc-appconfig"]
-        },
         {
             "root": "msrc-appconfig-attrs/tests",
             "extraPaths": ["msrc-appconfig-attrs", "msrc-appconfig"]
@@ -23,20 +20,5 @@
             "root": "msrc-appconfig-param/tests",
             "extraPaths": ["msrc-appconfig-param", "msrc-appconfig"]
         },
-        {
-            "root": "msrc-appconfig"
-        },
-        {
-            "root": "msrc-appconfig-attrs",
-            "extraPaths": ["msrc-appconfig"]
-        },
-        {
-            "root": "msrc-appconfig-dataclasses",
-            "extraPaths": ["msrc-appconfig"]
-        },
-        {
-            "root": "msrc-appconfig-param",
-            "extraPaths": ["msrc-appconfig"]
-        }
     ]
 }

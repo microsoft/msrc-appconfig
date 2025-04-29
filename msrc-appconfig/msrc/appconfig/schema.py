@@ -406,7 +406,7 @@ class Schema(Dict[str, Element], Generic[AppConfig]):
                 yield ((key, ), el)
 
 
-def interpret_type(t: type | Any) -> Optional[ElementType]:
+def interpret_type(t: Union[type, Any]) -> Optional[ElementType]:
     """Tries to interpret a type t as one of the supported types.
 
     Returns a type label or None for unsupported types."""

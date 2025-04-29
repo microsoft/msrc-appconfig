@@ -371,7 +371,7 @@ class Schema(Dict[str, Element], Generic[AppConfig]):
         self,
         instance: object,
         include_defaults: bool = False
-    ) -> ConfigMapping:
+    ) -> Dict[str, ConfigMappingValueType]:
         if not isinstance(instance, self.appconfig):
             raise TypeError("Need an instance of the class the schema is for.")
 

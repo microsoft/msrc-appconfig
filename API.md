@@ -229,7 +229,7 @@ Instantiates configuration object from a dictionary of values.
 def msrc.appconfig.to_dict(
     instance: object,
     include_defaults: bool = False,
-) -> _ConfigMapping
+) -> Dict[str, _ConfigMappingValueType]
 ```
 Extracts data from a configuration object.
 

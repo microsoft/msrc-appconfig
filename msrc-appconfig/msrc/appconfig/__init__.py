@@ -9,7 +9,7 @@ import logging
 
 from msrc.appconfig.schema import Schema as _Schema
 from msrc.appconfig.schema import ConfigMapping as _ConfigMapping
-from msrc.appconfig.schema import ConfigMappingValueType as _ConfigMappingValueType
+from msrc.appconfig.schema import ConfigMappingValueType as _ConfigValue
 from msrc.appconfig.schema import as_dict as _as_dict
 from msrc.appconfig.schema import get_schema as _get_schema
 from msrc.appconfig.read_files import from_file as _from_file
@@ -307,7 +307,7 @@ def from_dict(
 def to_dict(
     instance: object,
     include_defaults: bool = False
-) -> Dict[str, _ConfigMappingValueType]:
+) -> Dict[str, _ConfigValue]:
     """Extracts data from a configuration object.
 
     Returns a nested dictionary of configuration values.

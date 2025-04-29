@@ -6,8 +6,8 @@ from msrc.appconfig import schema as s, read_files as f
 from common import all_types_schema, all_values, all_yaml, all_json, En
 
 
-def get_nested(d: dict, k: tuple):
-    return get_nested(d[k[0]], k[1:]) if len(k) > 1 else d[k[0]]
+def get_nested(d: dict, k: tuple[str, ...]):
+    return d[k[0]] if len(k) == 1 else get_nested(d[k[0]], k[1:])
 
 
 def count_nested(d: dict):

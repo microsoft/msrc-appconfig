@@ -371,7 +371,7 @@ class Schema(Dict[str, Element], Generic[AppConfig]):
         self,
         instance: object,
         include_defaults: bool = False
-    ) -> ConfigMapping:
+    ) -> Dict[str, ConfigMappingValueType]:
         if not isinstance(instance, self.appconfig):
             raise TypeError("Need an instance of the class the schema is for.")
 
@@ -406,7 +406,7 @@ class Schema(Dict[str, Element], Generic[AppConfig]):
                 yield ((key, ), el)
 
 
-def interpret_type(t: type) -> Optional[ElementType]:
+def interpret_type(t: Union[type, Any]) -> Optional[ElementType]:
     """Tries to interpret a type t as one of the supported types.
 
     Returns a type label or None for unsupported types."""
@@ -446,7 +446,8 @@ def interpret_type(t: type) -> Optional[ElementType]:
 
 @lru_cache(maxsize=None)
 def get_schema(appconfig: type) -> Mapping[str, Element]:
-    if not isinstance(appconfig, type):
+    # deliberate excessive runtime check
+    if not isinstance(appconfig, type):  # type: ignore
         raise TypeError("argument must be a class.")
     installed_decl: Mapping[str, ModuleType] = get_installed_decl()
     logger.debug("using installed plugins %r.", installed_decl.keys())
